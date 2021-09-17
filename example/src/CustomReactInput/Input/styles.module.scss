@@ -1,0 +1,264 @@
+// @mixin fieldFormStyle {
+//     border-radius: 0;
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 14px;
+//     line-height: 19px;
+//     border: 1px solid #dddddd;
+//     padding-left: 15px;
+//     padding-right: 15px;
+//     padding-bottom: 0;
+//     background: #fff;
+//     transition: border-color 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+//     width: 100%;
+//     min-height: 48px;
+//     color: #222222;
+//     box-shadow: none !important;
+//     outline: none !important;
+// }
+
+// @mixin fieldLabelFocus {
+//     transform: translateY(7px);
+//     font-size: 11px;
+//     line-height: 15px;
+//     color: #555555;
+// }
+
+@mixin customScrollbar($width: 4px) {
+    &::-webkit-scrollbar {
+        width: $width;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #ddd;
+        border-radius: 3px;
+        height: 50px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #ddd;
+    }
+}
+
+// @mixin fieldFormInteraction {
+//     &.is-focus {
+//         .fieldLabel {
+//             @include fieldLabelFocus;
+//         }
+//     }
+
+//     &.has-value {
+//         .fieldLabel {
+//             @include fieldLabelFocus;
+//         }
+//     }
+// }
+// .inputField {
+//     margin-bottom: 18px;
+//     position: relative;
+//     display: block;
+//     .required {
+//         color: red;
+//     }
+//     .input,
+//     .textarea {
+//         padding-top: 20px;
+//         @include fieldFormStyle;
+//         padding-left: 15px;
+//         background: #fff;
+
+//         transition: border-color 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+//     }
+
+//     .textarea {
+//         @extend .input;
+//         @include customScrollbar;
+//         padding-bottom: 20px;
+//         outline: none;
+//     }
+
+//     &.isFocus {
+//         .fieldLabel {
+//             @include fieldLabelFocus;
+//         }
+
+//         .input,
+//         .textarea {
+//             border-color: #1174dc;
+//         }
+//     }
+
+//     @include fieldFormInteraction;
+//     &.hasValue {
+//         .fieldLabel {
+//             @include fieldLabelFocus;
+//         }
+//     }
+
+//     &.isReadOnly,
+//     &.isDisabled {
+//         .fieldLabel {
+//             color: #9c9c9c;
+//         }
+//         .input,
+//         .textarea {
+//             background-color: #f2f2f2;
+//             border-color: #f2f2f2;
+//             color: #9c9c9c;
+//         }
+//     }
+//     .iconPassword {
+//         position: absolute;
+//         z-index: 1;
+//         right: 10px;
+//         top: calc(50% - 6.5px);
+//     }
+
+//     &.isTextArea {
+//         .textarea {
+//             padding-top: 24px;
+//         }
+//         &.hasValue {
+//             .fieldLabel {
+//                 z-index: 3;
+//             }
+//             &::before {
+//                 position: absolute;
+//                 left: 1px;
+//                 right: 1px;
+//                 top: 1px;
+//                 width: calc(100% - 2px);
+//                 z-index: 2;
+//                 background-color: #fff;
+//                 content: "";
+//                 display: block;
+//                 padding-top: 22px;
+//             }
+//         }
+//     }
+// }
+
+$info: #1174dc;
+
+.container {
+    position: relative;
+    display: block;
+    .label {
+        position: relative;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+        color: #222;
+        position: absolute;
+        top: 50%;
+        margin-bottom: 0;
+        left: 15px;
+        transform: translateY(-50%);
+        transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+        pointer-events: none;
+        z-index: 2;        
+        .required {
+            color: red;
+        }
+    }
+    .input {
+        position: relative;
+        border-radius: 0;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        border: 1px solid #ddd;
+        width: 100%;
+        min-height: calc(3rem - 20px);
+        color: #222;
+        box-shadow: none !important;
+        outline: none !important;
+        padding: 20px 15px 0px;
+        background: #fff;
+        transition: border-color 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    .textarea {
+        position: relative;
+        border-radius: 0;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        border: 1px solid #ddd;
+        width: 100%;
+        min-height: calc(3rem - 20px);
+        color: #222;
+        box-shadow: none !important;
+        outline: none !important;
+        padding: 20px 15px 0px;
+        background: #fff;
+        transition: border-color 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    @mixin labelOnChange {
+        .label {
+            top: 0;
+            transform: translateY(7px);
+            font-size: 11px;
+            line-height: 15px;
+            color: #555;
+            background-color: #fff;
+            width: 100%;
+        }
+    }
+    &.hasValue {
+        @include labelOnChange();
+        .iconPassword {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(25px, calc(-50%));        
+        }
+    }    
+    &.isFocus {
+        @include labelOnChange();
+        .input {
+            border-color: $info;
+        }
+    }  
+    &.isTextArea {   
+        position: relative;   
+        .label {
+            top: 2rem;
+        }  
+        &.hasValue {
+            @include labelOnChange();
+            .label {
+                padding-top: 4px;
+                transform: translateY(1px);
+                width: calc(100% - 30px);
+            }
+        }
+        &.isFocus {
+            @include labelOnChange();
+            .label {
+                padding-top: 4px;
+                transform: translateY(1px);
+                width: calc(100%);
+            }
+        }        
+        .textarea {
+            position: relative;
+            @include customScrollbar();
+        }
+    }
+    .iconPassword {
+        display: none;    
+    }
+    &:hover {
+        .input {
+            border-color: $info;
+        }
+    }
+}
