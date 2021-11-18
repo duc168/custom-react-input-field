@@ -1,20 +1,23 @@
 {
   "name": "custom-react-input-field",
-  "version": "0.0.2",
+  "version": "0.0.0", 
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }, 
+  "license": "MIT",
   "main": "./lib/cjs/index.js",
   "mainType": "./lib/cjs/index.d.ts",
   "module": "./lib/esm/index.js",
   "moduleType": "./lib/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js"
+    }
+  },
   "types": "./lib/esm/index.d.ts",
-  "license": "MIT",
-  "keywords": [
-    "custom-react-input-field",
-    "custom",
-    "input",
-    "react",
-    "react-input",
-    "input-field"
-  ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "20.0.0",
     "@rollup/plugin-node-resolve": "13.0.4",
@@ -22,7 +25,7 @@
     "@types/react-dom": "17.0.9",
     "postcss": "8.3.6",
     "rollup": "2.56.2",
-    "rollup-plugin-dts": "^4.0.0",
+    "rollup-plugin-dts": "4.0.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-postcss": "4.0.1",
     "rollup-plugin-react-svg": "3.0.3",
@@ -35,16 +38,5 @@
     "build-tsc": "rm -rf lib && yarn build:cjs && yarn build:esm",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs",
     "build:esm": "tsc"
-  },
-  "peerDependencies": {
-    "classnames": "^2.3.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
-  "files": [
-    "/lib"
-  ],
-  "dependencies": {
-    "classnames": "^2.3.1"
-  }
+  }  
 }
